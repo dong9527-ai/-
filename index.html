@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APP下载 - 开源发布页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            width: 100%;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: white;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        h1 {
+            color: #333;
+            font-size: 32px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 40px;
+        }
+
+        .version-info {
+            background: #f5f7fa;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .version-info h3 {
+            color: #333;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .info-item:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .info-value {
+            color: #333;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .download-section {
+            margin-top: 30px;
+        }
+
+        .download-btn {
+            display: inline-block;
+            width: 100%;
+            padding: 18px 30px;
+            margin: 10px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            border: none;
+            cursor: pointer;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        .download-btn:active {
+            transform: translateY(0);
+        }
+
+        .download-btn.android {
+            background: linear-gradient(135deg, #3ddc84 0%, #2ecc71 100%);
+            box-shadow: 0 4px 15px rgba(46, 204, 113, 0.4);
+        }
+
+        .download-btn.android:hover {
+            box-shadow: 0 6px 20px rgba(46, 204, 113, 0.6);
+        }
+
+        .download-btn.ios {
+            background: linear-gradient(135deg, #007aff 0%, #0051d5 100%);
+            box-shadow: 0 4px 15px rgba(0, 122, 255, 0.4);
+        }
+
+        .download-btn.ios:hover {
+            box-shadow: 0 6px 20px rgba(0, 122, 255, 0.6);
+        }
+
+        .download-btn .icon {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+
+        .qr-code {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f5f7fa;
+            border-radius: 12px;
+        }
+
+        .qr-code h3 {
+            color: #333;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .qr-placeholder {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 14px;
+            border: 2px dashed #ddd;
+        }
+
+        .tips {
+            margin-top: 30px;
+            padding: 15px;
+            background: #fff3cd;
+            border-radius: 12px;
+            border-left: 4px solid #ffc107;
+        }
+
+        .tips h4 {
+            color: #856404;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .tips p {
+            color: #856404;
+            font-size: 12px;
+            line-height: 1.6;
+            text-align: left;
+        }
+
+        .footer {
+            margin-top: 30px;
+            color: #999;
+            font-size: 12px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .logo {
+                width: 100px;
+                height: 100px;
+                font-size: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">📱</div>
+        <h1>APP名称</h1>
+        <p class="subtitle">简洁优雅的应用体验</p>
+
+        <div class="version-info">
+            <h3>版本信息</h3>
+            <div class="info-item">
+                <span class="info-label">当前版本</span>
+                <span class="info-value" id="version">v1.0.0</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">更新时间</span>
+                <span class="info-value" id="updateTime">2024-01-01</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">文件大小</span>
+                <span class="info-value" id="fileSize">25.6 MB</span>
+            </div>
+        </div>
+
+        <div class="download-section">
+            <a href="#" class="download-btn android" id="androidDownload" onclick="downloadApp('android')">
+                <span class="icon">🤖</span>
+                <span>下载 Android 版本</span>
+            </a>
+            <!-- iOS版本开发中，暂时隐藏 -->
+            <!--
+            <a href="#" class="download-btn ios" id="iosDownload" onclick="downloadApp('ios')">
+                <span class="icon">🍎</span>
+                <span>下载 iOS 版本</span>
+            </a>
+            -->
+        </div>
+
+        <div class="qr-code">
+            <h3>扫码下载</h3>
+            <div class="qr-placeholder">
+                二维码占位符<br>
+                (替换为实际二维码图片)
+            </div>
+        </div>
+
+        <div class="tips">
+            <h4>📌 下载提示</h4>
+            <p>
+                • Android用户：点击下载后，如提示"未知来源"，请在设置中允许安装<br>
+                <!-- • iOS用户：需要信任企业证书，在设置-通用-设备管理中信任开发者<br> -->
+                • 建议在WiFi环境下下载，确保下载完整
+            </p>
+        </div>
+
+        <div class="footer">
+            <p>© 2024 开源发布页 | 安全下载，放心使用</p>
+        </div>
+    </div>
+
+    <script>
+        // APP下载配置
+        const appConfig = {
+            android: {
+                url: 'https://your-domain.com/apps/app-release.apk', // 替换为实际的APK下载链接
+                version: 'v1.0.0',
+                size: '25.6 MB'
+            }
+            // iOS版本开发中，暂时注释
+            /*
+            ios: {
+                url: 'https://your-domain.com/apps/app.ipa', // 替换为实际的IPA下载链接
+                version: 'v1.0.0',
+                size: '28.3 MB'
+            }
+            */
+        };
+
+        // 检测设备类型
+        function detectDevice() {
+            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            if (/android/i.test(userAgent)) {
+                return 'android';
+            }
+            if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                return 'ios';
+            }
+            return 'other';
+        }
+
+        // 下载APP
+        function downloadApp(platform) {
+            const config = appConfig[platform];
+            if (!config || !config.url) {
+                alert('下载链接未配置，请先设置下载地址');
+                return false;
+            }
+
+            // 创建下载链接
+            const link = document.createElement('a');
+            link.href = config.url;
+            link.download = '';
+            link.target = '_blank';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+            // 统计下载（可选）
+            console.log(`下载 ${platform} 版本: ${config.version}`);
+            
+            return false;
+        }
+
+        // 页面加载时自动检测设备并高亮对应下载按钮
+        window.addEventListener('DOMContentLoaded', function() {
+            const device = detectDevice();
+            const androidBtn = document.getElementById('androidDownload');
+            // const iosBtn = document.getElementById('iosDownload'); // iOS版本开发中，暂时注释
+
+            if (device === 'android') {
+                androidBtn.style.transform = 'scale(1.05)';
+                androidBtn.style.boxShadow = '0 8px 25px rgba(46, 204, 113, 0.6)';
+            }
+            // iOS版本开发中，暂时注释
+            /*
+            else if (device === 'ios') {
+                iosBtn.style.transform = 'scale(1.05)';
+                iosBtn.style.boxShadow = '0 8px 25px rgba(0, 122, 255, 0.6)';
+            }
+            */
+
+            // 设置下载链接
+            androidBtn.href = appConfig.android.url;
+            // iosBtn.href = appConfig.ios.url; // iOS版本开发中，暂时注释
+        });
+
+        // 更新版本信息（可以从API获取）
+        function updateVersionInfo(version, updateTime, fileSize) {
+            document.getElementById('version').textContent = version;
+            document.getElementById('updateTime').textContent = updateTime;
+            document.getElementById('fileSize').textContent = fileSize;
+        }
+    </script>
+</body>
+</html>
