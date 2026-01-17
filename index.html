@@ -236,7 +236,7 @@
             </div>
             <div class="info-item">
                 <span class="info-label">文件大小</span>
-                <span class="info-value" id="fileSize">25.6 MB</span>
+                <span class="info-value" id="fileSize">5 MB</span>
             </div>
         </div>
 
@@ -280,9 +280,14 @@
         // APP下载配置
         const appConfig = {
             android: {
-                url: 'https://your-domain.com/apps/app-release.apk', // 替换为实际的APK下载链接
+                // 方式1: GitHub Releases 下载链接（推荐）
+                // url: 'https://github.com/你的用户名/仓库名/releases/download/v1.0.0/app-release.apk',
+                // 方式2: 直接文件链接
+                url: 'https://github.com/你的用户名/仓库名/raw/main/apps/app-release.apk',
+                // 方式3: 其他文件托管服务链接
+                // url: 'https://你的文件托管链接/app-release.apk',
                 version: 'v1.0.0',
-                size: '25.6 MB'
+                size: '5 MB'
             }
             // iOS版本开发中，暂时注释
             /*
